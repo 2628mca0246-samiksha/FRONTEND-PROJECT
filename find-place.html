@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a Place — Before You Throw It</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body data-root=".." data-page="places">
+  <header class="site-header">
+    <nav class="navbar navbar-expand-xl container" aria-label="Primary">
+      <a class="brand-mark" href="../index.html"><span aria-hidden="true"><i class="bi bi-recycle"></i></span><strong>Before You Throw It</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="primaryNav">
+        <ul class="navbar-nav ms-auto me-lg-3">
+          <li class="nav-item"><a class="nav-link" data-nav="home" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="check" href="check-item.html">Check an Item</a></li>
+          <li class="nav-item"><a class="nav-link" href="diy.html">Explore Ideas</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="diy" href="diy.html">DIY</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="sorting" href="sorting-guide.html">Sorting Guide</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="places" href="find-place.html">Find a Place</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="impact" href="impact.html">My Impact</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="saved" href="saved.html">Saved</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="learn" href="learn.html">Learn</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <button class="icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchPanel" aria-label="Search items"><i class="bi bi-search"></i></button>
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle colour theme"><i class="bi bi-sun-fill"></i></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <p class="eyebrow">Nearby options</p>
+      <h1>Find a place</h1>
+      <p class="lead-copy">Search demo recycling centres, donation points, repair shops, and e-waste drop-offs.</p>
+      <div class="demo-note content-card mb-4">Demo locations — real location services can be connected in the backend phase. A Google Maps or similar API can replace this list later.</div>
+      <form id="places-form" class="row g-3 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label" for="place-query">Enter city or PIN code</label>
+          <input class="form-control" id="place-query" type="search" placeholder="Bengaluru, 560001, Mumbai...">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label" for="place-filter">Filter</label>
+          <select class="form-select" id="place-filter">
+            <option value="all">All types</option>
+            <option value="recycling">Recycling</option>
+            <option value="donation">Donation</option>
+            <option value="repair">Repair</option>
+            <option value="e-waste">E-waste</option>
+          </select>
+        </div>
+        <div class="col-md-2"><button class="btn btn-brand w-100" type="submit">Search</button></div>
+      </form>
+      <div class="row g-4 mt-1" id="places-grid"></div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="placeModal" tabindex="-1" aria-labelledby="placeModalTitle" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h2 class="modal-title h5" id="placeModalTitle">Place</h2><button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"></div></div></div>
+  </div>
+
+  <footer class="site-footer"><div class="container"><h2 class="h4">Before You Throw It</h2><p>Think twice. Give things a second life.</p><p class="small mb-0">© 2026 Before You Throw It. Frontend project demonstration.</p></div></footer>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="searchPanel" aria-labelledby="searchPanelLabel">
+    <div class="offcanvas-header"><h2 class="h5" id="searchPanelLabel">Search an item</h2><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button></div>
+    <div class="offcanvas-body"><form id="global-search-form"><label class="form-label" for="global-search-input">Search</label><input class="form-control" id="global-search-input" type="search"></form><div id="global-search-results" class="mt-3"></div></div>
+  </div>
+  <div id="toast-region" class="byti-toast-region" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/items.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Impact — Before You Throw It</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/dark-mode.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body data-root=".." data-page="impact">
+  <header class="site-header">
+    <nav class="navbar navbar-expand-xl container" aria-label="Primary">
+      <a class="brand-mark" href="../index.html"><span aria-hidden="true"><i class="bi bi-recycle"></i></span><strong>Before You Throw It</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="primaryNav">
+        <ul class="navbar-nav ms-auto me-lg-3">
+          <li class="nav-item"><a class="nav-link" data-nav="home" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="check" href="check-item.html">Check an Item</a></li>
+          <li class="nav-item"><a class="nav-link" href="diy.html">Explore Ideas</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="diy" href="diy.html">DIY</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="sorting" href="sorting-guide.html">Sorting Guide</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="places" href="find-place.html">Find a Place</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="impact" href="impact.html">My Impact</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="saved" href="saved.html">Saved</a></li>
+          <li class="nav-item"><a class="nav-link" data-nav="learn" href="learn.html">Learn</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+          <button class="icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#searchPanel" aria-label="Search items"><i class="bi bi-search"></i></button>
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle colour theme"><i class="bi bi-sun-fill"></i></button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="section" id="impact-page">
+    <div class="container">
+      <p class="eyebrow">Dashboard</p>
+      <h1>My impact</h1>
+      <p class="demo-note">Figures combine demo seed actions with anything you add. Estimates are illustrative, not scientific.</p>
+      <div class="row g-3 mt-1" id="impact-stats">
+        <div class="col-6 col-lg-3"><div class="stat-card"><p>Items Saved</p><div class="h2" id="stat-items">0</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><p>Waste Avoided (kg)</p><div class="h2" id="stat-waste">0</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><p>Actions Completed</p><div class="h2" id="stat-actions">0</div></div></div>
+        <div class="col-6 col-lg-3"><div class="stat-card"><p>Current Streak (days)</p><div class="h2" id="stat-streak">0</div></div></div>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-lg-5">
+          <div class="content-card">
+            <h2 class="h5">Actions by type</h2>
+            <div class="chart-wrap"><canvas id="impactDoughnut" aria-label="Doughnut chart of action types"></canvas></div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="content-card">
+            <h2 class="h5">Activity over time</h2>
+            <div class="chart-wrap"><canvas id="impactTrend" aria-label="Line chart of activity over time"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-1">
+        <div class="col-lg-7">
+          <h2 class="h4 mt-3">Recent actions</h2>
+          <div class="table-responsive content-card p-0">
+            <table class="table mb-0">
+              <thead><tr><th scope="col">Item</th><th scope="col">Action</th><th scope="col">Date</th></tr></thead>
+              <tbody id="actions-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <h2 class="h4 mt-3">Log an action</h2>
+          <form id="add-action-form" class="content-card">
+            <label class="form-label" for="action-item">Item</label>
+            <select class="form-select mb-3" id="action-item" required></select>
+            <label class="form-label" for="action-type">Action</label>
+            <select class="form-select mb-3" id="action-type">
+              <option value="reuse">Reuse</option>
+              <option value="repair">Repair</option>
+              <option value="donate">Donate</option>
+              <option value="sell">Sell</option>
+              <option value="upcycle">Upcycle</option>
+              <option value="recycle">Recycle</option>
+            </select>
+            <p id="calc-result" class="impact-note"></p>
+            <button class="btn btn-brand" type="submit">Add to dashboard</button>
+          </form>
+        </div>
+      </div>
+
+      <h2 class="h4 mt-5">Achievements</h2>
+      <div class="row g-3 mt-1" id="badge-grid"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container"><h2 class="h4">Before You Throw It</h2><p>Think twice. Give things a second life.</p><p class="small mb-0">© 2026 Before You Throw It. Frontend project demonstration.</p></div></footer>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="searchPanel" aria-labelledby="searchPanelLabel">
+    <div class="offcanvas-header"><h2 class="h5" id="searchPanelLabel">Search an item</h2><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button></div>
+    <div class="offcanvas-body"><form id="global-search-form"><label class="form-label" for="global-search-input">Search</label><input class="form-control" id="global-search-input" type="search"></form><div id="global-search-results" class="mt-3"></div></div>
+  </div>
+  <div id="toast-region" class="byti-toast-region" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/items.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/impact.js"></script>
+</body>
+</html>
